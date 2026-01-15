@@ -107,7 +107,6 @@
         background: radial-gradient(circle, #ffd166, #ff8500);
         border-radius: 50%;
         animation: flicker 0.2s infinite alternate;
-        transition: 300ms ease-in-out;
     }
 
     @keyframes flicker {
@@ -116,7 +115,7 @@
     }
 
     .blown {
-        opacity: 0;
+        display: none;
     }
 
     .message {
@@ -136,7 +135,10 @@
         position: absolute;
         width: 8px;
         height: 8px;
+        border-radius: 2px;
         animation: fall 3s linear forwards;
+        pointer-events: none;
+        z-index: 1;
     }
 
     @keyframes fall {
@@ -186,13 +188,13 @@
     </div>
 
     <div class="message" id="message">
-        Wishing you an amazing start to adulthood 🎉  
+        I hope your day is filled with smiles, cake, and all the little things that make you happy.   
         <br>
-        May this year be full of new adventures!
+        Wishing you a year as lovely as your smile 💫
     </div>
 
     <div class="hint">(tap the cake to blow all 18 candles)</div>
-
+    
     <button class="mute-btn" onclick="toggleMute()">🔊 Sound On</button>
 </div>
 
@@ -225,16 +227,9 @@
     let isMuted = true;
 
     function blowCandles() {
-        let flames = Array.from(document.querySelectorAll(".flame"))
-
-// Shuffles the Array (Fisher-Yates) 
-for (let i = flames.length - 1; i > 0; i--) {
-    const j = Math.floor(Math.random() * (i + 1))
-    ;[flames[i], flames[j]] = [flames[j], flames[i]]
- }
-
-// this is lowkey stupid but i just wanted it all in one line
-flames.forEach((flame, i) => setTimeout(() => flame.classList.add("blown"), 50 * i));
+        document.querySelectorAll(".flame").forEach(flame => {
+            flame.classList.add("blown");
+        });
 
        
 
@@ -282,6 +277,7 @@ flames.forEach((flame, i) => setTimeout(() => flame.classList.add("blown"), 50 *
 </script>
 </body>
 </html>
+
 
 
 
